@@ -143,7 +143,7 @@ document.querySelectorAll('#gallery img').forEach((img,i)=>img.onclick=()=>{
   if(i===1){startEmojis(EMOJI_SETS.hidden);hiddenMsg('thanyouu somuchh yaaahh lisaaa uda jadi bestie terbaekk kuu 🤍');}
   else if(i===3){startEmojis(EMOJI_SETS.hidden);hiddenMsg('makasi yaaa udah jadi temen curhatkuu, dengerin semua ceritaku 🫂');}
   else if(i===5){startEmojis(EMOJI_SETS.hidden);hiddenMsg('aku bersyukur banget bisa kenal dan sedeket ini sama kamu 🥹');}
-  else if(i===7){startEmojis(EMOJI_SETS.hidden);hiddenMsg('ilopyukk sm bubbb, jangan kemana-mana yaaa 💗');}
+  else if(i===7){startEmojis(EMOJI_SETS.final);hiddenMsg('ilopyukk sm bubbb, jangan kemana-mana yaaa 💗');}
   else{startEmojis(EMOJI_SETS.photo);lightbox.style.display='flex';lightboxImg.src=img.src}
 });
   if(i===1) hiddenMsg('thanyouu somuchh yaaahh lisaaa uda jadi bestie terbaekk kuu 🤍');
@@ -199,7 +199,8 @@ function toggleMusic(){
 const EMOJI_SETS={
   heart:['💗','🫶🏻','🤍','💞'],
   photo:['✨','💫','🌸','🤍'],
-  hidden:['🫂','🥹','💖','🌷']
+  hidden:['🫂','🥹','💖','🌷'],
+  final:['😭','🫶🏻','💗','🤍','✨']
 };
 let CURRENT_SET=EMOJI_SETS.heart;
 let emojiTimer=null;

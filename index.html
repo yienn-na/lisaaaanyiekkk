@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>forlisayang</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Verdana,sans-serif}
+    body{
+      min-height:100vh;
+      background:linear-gradient(135deg,#ffe4e9,#fff1f4);
+      display:flex;justify-content:center;padding:30px 14px;overflow-x:hidden
+    }
+    .container{
+      background:#fff;width:100%;max-width:540px;border-radius:26px;
+      padding:32px 26px 36px;box-shadow:0 25px 50px rgba(0,0,0,.25);
+      animation:fadeIn 1s ease;position:relative
+    }
+    h1{text-align:center;font-size:2.2rem;color:#ec4899;min-height:2.6rem;margin-bottom:6px}
+    h2{text-align:center;font-size:1.05rem;color:#555;margin-bottom:22px}
+    .letter{
+      background:#fff5f7;padding:18px;border-radius:18px;font-size:.95rem;
+      line-height:1.7;color:#444;margin-bottom:18px;max-height:260px;overflow-y:auto
+    }
+    button{
+      display:block;margin:0 auto 16px;background:#ec4899;color:#fff;border:none;
+      padding:12px 30px;border-radius:999px;font-size:.95rem;cursor:pointer
+    }
+    button:hover{transform:scale(1.06);box-shadow:0 12px 26px rgba(236,72,153,.45)}
+    .message{
+      display:none;background:#fdf2f8;padding:16px;border-radius:14px;
+      text-align:center;margin-bottom:18px
+    }
+    .photos{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory}
+    .photos img{
+      flex:0 0 auto;width:140px;height:170px;object-fit:cover;border-radius:18px;
+      scroll-snap-align:center;box-shadow:0 8px 18px rgba(0,0,0,.15);cursor:pointer
+    }
+    .heart-btn{font-size:2.2rem;cursor:pointer;text-align:center}
+    #secret{display:none;text-align:center;margin-top:10px;color:#be185d}
+    .closing{text-align:center;margin-top:20px;color:#9d174d;font-size:.9rem}
+    .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center;z-index:999}
+    .lightbox img{max-width:90%;max-height:90%;border-radius:20px}
+    .music{position:fixed;bottom:20px;right:20px;background:#ec4899;color:#fff;border:none;padding:12px 16px;border-radius:999px}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+  </style>
+</head>
+<body>
+
+<!-- PASSWORD -->
+<div id="lock" style="position:fixed;inset:0;background:linear-gradient(135deg,#ffe4e9,#fff1f4);display:flex;align-items:center;justify-content:center;z-index:2000">
+  <div style="background:#fff;padding:30px 26px;border-radius:22px;text-align:center;max-width:320px;width:100%">
+    <h2 style="color:#ec4899">🔐 Secret Page</h2>
+    <p style="font-size:.9rem;color:#555;margin:10px 0">Enter the password</p>
+    <input id="pwd" type="password" placeholder="password" style="width:100%;padding:10px;border-radius:999px;border:1px solid #f9a8d4;text-align:center">
+    <button onclick="unlock()" style="margin-top:14px">Open 💗</button>
+    <p id="err" style="display:none;color:#be123c;font-size:.8rem;margin-top:8px">Wrong password</p>
+  </div>
+</div>
+
+<div class="container" id="main" style="display:none">
+  <h1 id="typing"></h1>
+  <h2>hey lisayang</h2>
+
+  <!-- DO NOT CHANGE YOUR LETTER -->
+  <div class="letter">
+    <!-- PASTE YOUR ORIGINAL LETTER HERE. DO NOT CHANGE ANY WORD. -->
+  </div>
+
+  <button onclick="showMessage()">Read a message</button>
+  <div class="message" id="message">You are not just a friend. You are my safe place 🤍</div>
+
+  <div class="photos" id="gallery">
+    <img src="lisa1.jpg"><img src="lisa2.jpg"><img src="lisa3.jpg"><img src="lisa4.jpg"><img src="lisa5.jpg"><img src="lisa6.jpg"><img src="lisa7.jpg"><img src="lisa8.jpg"><img src="lisa9.jpg">
+  </div>
+
+  <div style="margin-top:18px;text-align:center">
+    <span id="heart" class="heart-btn">💗</span>
+    <p id="secret"></p>
+  </div>
+
+  <p class="closing">Scroll slowly… there is something waiting for you ✨</p>
+</div>
+
+<div class="lightbox" id="lightbox" onclick="this.style.display='none'"><img id="lightboxImg"></div>
+<button class="music" onclick="toggleMusic()">▶ Music</button>
+<audio id="bgm" loop><source src="Semua Aku Dirayakan.mp3"></audio>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script>
+const PASSWORD='011006';
+const typing=document.getElementById('typing');
+const heart=document.getElementById('heart');
+const secret=document.getElementById('secret');
+const music=document.getElementById('bgm');
+let playing=false,step=0;
+
+function unlock(){
+  if(pwd.value===PASSWORD){lock.style.display='none';main.style.display='block';typeTitle()}
+  else err.style.display='block';
+}
+
+const titleText='🫂 forlisayang 🫂';let i=0;
+function typeTitle(){if(i<titleText.length){typing.textContent+=titleText[i++];setTimeout(typeTitle,120)}}
+
+function showMessage(){message.style.display='block';confetti({particleCount:80,spread:70})}
+
+heart.onclick=()=>{
+  step++;
+  confetti({particleCount:120,spread:160});
+  if(step===1){secret.textContent='I feel incredibly lucky to have you 🤍';secret.style.display='block'}
+  if(step===2){secret.textContent='Whenever you feel tired or overwhelmed, I am right here.'}
+  if(step===3){secret.textContent='No matter what happens, I will always choose you 🤍';setTimeout(endScene,1200)}
+}
+
+document.querySelectorAll('#gallery img').forEach((img,i)=>img.onclick=()=>{
+  if(i===4) hidden(); else{lightbox.style.display='flex';lightboxImg.src=img.src}
+});
+
+function hidden(){
+  const h=document.createElement('div');
+  h.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.85);display:flex;align-items:center;justify-content:center;z-index:3000';
+  h.innerHTML='<div style="background:#fff;padding:26px;border-radius:20px;max-width:320px;text-align:center">🤍<br><br>You found this message because you matter to me.<br>Thank you for existing.</div>';
+  h.onclick=()=>h.remove();document.body.appendChild(h)
+}
+
+function endScene(){
+  const e=document.createElement('div');
+  e.style.cssText='position:fixed;inset:0;background:#000;display:flex;align-items:center;justify-content:center;z-index:4000';
+  e.innerHTML='<div style="color:white;font-size:1.4rem;text-align:center">Thank you for becoming the most beautiful part of my story 🤍</div>';
+  document.body.appendChild(e)
+}
+
+function toggleMusic(){playing?music.pause():music.play();playing=!playing}
+</script>
+</body>
+</html>

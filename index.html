@@ -4,8 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>forlisayang</title>
+
+  <!-- AESTHETIC FONTS -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
   <style>
-    *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Verdana,sans-serif}
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
     body{
       min-height:100vh;
       background:linear-gradient(135deg,#ffe4e9,#fff1f4);
@@ -16,13 +20,10 @@
       padding:32px 26px 36px;box-shadow:0 25px 50px rgba(0,0,0,.25);
       animation:fadeIn 1s ease;position:relative
     }
-    h1{text-align:center;font-size:2.2rem;color:#ec4899;min-height:2.6rem;margin-bottom:6px}
-    h2{text-align:center;font-size:1.05rem;color:#555;margin-bottom:22px}
+    h1{text-align:center;font-size:2.3rem;color:#ec4899;min-height:2.6rem;margin-bottom:6px;font-family:'Playfair Display',serif;font-weight:600}
+    h2{text-align:center;font-size:1.05rem;color:#555;margin-bottom:22px;font-weight:300}
 
-    .letter{
-      background:#fff5f7;padding:18px;border-radius:18px;font-size:.95rem;
-      line-height:1.7;color:#444;margin-bottom:18px;max-height:300px;overflow-y:auto
-    }
+    .letter{background:#fff5f7;padding:20px;border-radius:20px;font-size:.95rem;line-height:1.85;color:#444;margin-bottom:18px;max-height:300px;overflow-y:auto;font-weight:300}
 
     button{
       display:block;margin:0 auto 16px;background:#ec4899;color:#fff;border:none;
@@ -52,6 +53,10 @@
     .music{position:fixed;bottom:20px;right:20px;background:#ec4899;color:#fff;border:none;padding:12px 16px;border-radius:999px}
 
     @keyframes fadeIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+/* FLOATING EMOJIS */
+.emoji{position:fixed;font-size:20px;pointer-events:none;animation:emojiRain 5s linear forwards;z-index:1500}
+@keyframes emojiRain{from{transform:translateY(-20vh) scale(1);opacity:1}to{transform:translateY(120vh) scale(1.1);opacity:0}}to{transform:translateY(-120vh) scale(1.3);opacity:0}}to{opacity:1;transform:translateY(0)}}
   </style>
 </head>
 <body>
@@ -117,25 +122,110 @@ function showMessage(){message.style.display='block';confetti({particleCount:80,
 
 heart.onclick=()=>{
   step++;
+  startEmojis(EMOJI_SETS.heart);
   confetti({particleCount:120,spread:160});
+  if(step===1){secret.textContent='I feel incredibly lucky to have you 🤍';secret.style.display='block'}
+  if(step===2){secret.textContent='Whenever you feel tired or overwhelmed, I am right here.'}
+});
+  if(step===1){secret.textContent='I feel incredibly lucky to have you 🤍';secret.style.display='block'}
+  if(step===2){secret.textContent='Whenever you feel tired or overwhelmed, I am right here.'}
+});
+  if(step===1){secret.textContent='I feel incredibly lucky to have you 🤍';secret.style.display='block'}
+  if(step===2){secret.textContent='Whenever you feel tired or overwhelmed, I am right here.'}
+  if(step===3){secret.textContent=''}
+});
   if(step===1){secret.textContent='I feel incredibly lucky to have you 🤍';secret.style.display='block'}
   if(step===2){secret.textContent='Whenever you feel tired or overwhelmed, I am right here.'}
   if(step===3){secret.textContent='No matter what happens, I will always choose you 🤍'}
 }
 
 document.querySelectorAll('#gallery img').forEach((img,i)=>img.onclick=()=>{
-  if(i===4) hidden(); else{lightbox.style.display='flex';lightboxImg.src=img.src}
+  if(i===1){startEmojis(EMOJI_SETS.hidden);hiddenMsg('thanyouu somuchh yaaahh lisaaa uda jadi bestie terbaekk kuu 🤍');}
+  else if(i===3){startEmojis(EMOJI_SETS.hidden);hiddenMsg('makasi yaaa udah jadi temen curhatkuu, dengerin semua ceritaku 🫂');}
+  else if(i===5){startEmojis(EMOJI_SETS.hidden);hiddenMsg('aku bersyukur banget bisa kenal dan sedeket ini sama kamu 🥹');}
+  else if(i===7){startEmojis(EMOJI_SETS.hidden);hiddenMsg('ilopyukk sm bubbb, jangan kemana-mana yaaa 💗');}
+  else{startEmojis(EMOJI_SETS.photo);lightbox.style.display='flex';lightboxImg.src=img.src}
+});
+  if(i===1) hiddenMsg('thanyouu somuchh yaaahh lisaaa uda jadi bestie terbaekk kuu 🤍');
+  else if(i===3) hiddenMsg('makasi yaaa udah jadi temen curhatkuu, dengerin semua ceritaku 🫂');
+  else if(i===5) hiddenMsg('aku bersyukur banget bisa kenal dan sedeket ini sama kamu 🥹');
+  else if(i===7) hiddenMsg('ilopyukk sm bubbb, jangan kemana-mana yaaa 💗');
+  else{lightbox.style.display='flex';lightboxImg.src=img.src}
+});
+  else if(i===3) hiddenMsg('makasi yaaa udah jadi temen curhatkuu, dengerin semua ceritaku 🫂');
+  else if(i===5) hiddenMsg('aku bersyukur banget bisa kenal dan sedeket ini sama kamu 🥹');
+  else if(i===7) hiddenMsg('ilopyukk sm bubbb, jangan kemana-mana yaaa 💗');
+  else{lightbox.style.display='flex';lightboxImg.src=img.src}
+});
+  else if(i===3) hiddenMsg('thanyouu somuchh yaaahh lisaaa uda jadi bestie terbaekk kuu, temen curhatku dll, ilopyukk sm bubbb');
+  else if(i===5) hiddenMsg('thanyouu somuchh yaaahh lisaaa uda jadi bestie terbaekk kuu, temen curhatku dll, ilopyukk sm bubbb');
+  else if(i===7) hiddenMsg('thanyouu somuchh yaaahh lisaaa uda jadi bestie terbaekk kuu, temen curhatku dll, ilopyukk sm bubbb');
+  else{lightbox.style.display='flex';lightboxImg.src=img.src}
+}); else{lightbox.style.display='flex';lightboxImg.src=img.src}
 });
 
-function hidden(){
+function hiddenMsg(text){
   const h=document.createElement('div');
   h.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,.85);display:flex;align-items:center;justify-content:center;z-index:3000';
-  h.innerHTML='<div style="background:#fff;padding:26px;border-radius:20px;max-width:320px;text-align:center">🤍<br><br>You found this message because you matter to me.<br>Thank you for existing.</div>';
-  h.onclick=()=>h.remove();document.body.appendChild(h)
+  h.innerHTML=`<div style="background:#fff;padding:26px;border-radius:20px;max-width:320px;text-align:center;line-height:1.6">🤍<br><br>${text}</div>`;
+  h.onclick=()=>h.remove();
+  document.body.appendChild(h);
 }
 
 
-function toggleMusic(){playing?music.pause():music.play();playing=!playing}
+function toggleMusic(){
+  if(!playing){
+    music.play();
+    playing=true;
+    startEmojis();
+  }else{
+    music.pause();
+    playing=false;
+    stopEmojis();
+    secret.style.display='block';
+    secret.textContent='No matter what happens, I will always choose you 🤍';
+    confetti({particleCount:120,spread:140});
+  }
+}else{
+    music.pause();
+    playing=false;
+    secret.style.display='block';
+    secret.textContent='No matter what happens, I will always choose you 🤍';
+    confetti({particleCount:120,spread:140});
+  }
+}
+
+// FLOATING EMOJI EFFECT
+const EMOJI_SETS={
+  heart:['💗','🫶🏻','🤍','💞'],
+  photo:['✨','💫','🌸','🤍'],
+  hidden:['🫂','🥹','💖','🌷']
+};
+let CURRENT_SET=EMOJI_SETS.heart;
+let emojiTimer=null;
+function spawnEmoji(){
+  const e=document.createElement('div');
+  e.className='emoji';
+  e.textContent=CURRENT_SET[Math.floor(Math.random()*CURRENT_SET.length)];
+  e.style.left=Math.random()*100+'vw';
+  e.style.top='-30px';
+  e.style.fontSize=(18+Math.random()*18)+'px';
+  document.body.appendChild(e);
+  setTimeout(()=>e.remove(),5200);
+}
+function startEmojis(set){
+  CURRENT_SET=set;
+  if(emojiTimer) return;
+  emojiTimer=setInterval(spawnEmoji,200);
+  setTimeout(stopEmojis,1800);
+}
+function stopEmojis(){ clearInterval(emojiTimer); emojiTimer=null; }
+
+window.addEventListener('scroll',()=>{
+  if(window.innerHeight+window.scrollY>=document.body.offsetHeight-40){
+    for(let i=0;i<6;i++) setTimeout(spawnEmoji,i*120);
+  }
+});
 </script>
 </body>
 </html>
